@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Base : MonoBehaviour
 {
+    public GameProxy gameProxy;
+    public int health;
+
     // Start is called before the first frame update
     void Start()
     {

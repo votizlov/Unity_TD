@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/GameProxy", order = 1)]
 public class GameProxy : ScriptableObject
 {
     public event Action NewGameEvent;
@@ -12,13 +13,20 @@ public class GameProxy : ScriptableObject
     public event Action TimerEndEvent;
     public event Action TimerAddEvent;
 
+    public event Action NewWaveEvent;
+
+    public event Action BaseDestroyedEvent;
+
     public int Scores { get; private set; }
 
-    // todo public CameraShake CameraShake { get; set; }
+    //todo public CameraShake CameraShake { get; set; }
 
     public Timer Timer { get; set; }
 
     private List<GameObject> _objects = new List<GameObject>();
+
+    public List<GameObject> enemies = new List<GameObject>();
+    public List<GameObject> guards = new List<GameObject>();
 
     public void ClearState()
     {
