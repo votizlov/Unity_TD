@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Game : MonoBehaviour
 {
-    public Wave[] waves;
-
-    public GameProxy gameProxy;
     // Start is called before the first frame update
     void Start()
     {
