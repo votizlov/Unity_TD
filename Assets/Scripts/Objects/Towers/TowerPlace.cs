@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class TowerPlace : MonoBehaviour
 {
-    public GameObject UI;
-    public GameObject TowerMenu;
+    public UIController ui;
+    private bool _isMenuOpened = false;
+
     private void OnMouseDown()
     {
-        throw new NotImplementedException();
+        if (!_isMenuOpened)
+        {
+            ui.OpenTowerPlaceMenu();
+        }
     }
 }

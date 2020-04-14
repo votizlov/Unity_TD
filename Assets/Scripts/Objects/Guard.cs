@@ -34,7 +34,7 @@ public class Guard : PathfindingObject
         if (minDistance < aggroRange)
         {
             target = closestObject.transform;
-            attack.AttackTarget(closestObject);
+            attackingObject.AttackTarget(closestObject);
         }
         else
         {

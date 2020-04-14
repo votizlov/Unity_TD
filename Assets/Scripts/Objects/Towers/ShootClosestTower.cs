@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootClosestTower : MonoBehaviour
 {
-    public Attack attack;
+    public AttackingObject attackingObject;
 
     public GameProxy gameProxy;
 
@@ -16,7 +16,7 @@ public class ShootClosestTower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float minDistance = attack.range;
+        float minDistance = attackingObject.range;
         GameObject closestObject = null;
         foreach (var enemy in gameProxy.enemies)
         {
@@ -27,7 +27,7 @@ public class ShootClosestTower : MonoBehaviour
             }
         }
 
-        if (minDistance < attack.range)
-            attack.AttackTarget(closestObject);
+        if (minDistance < attackingObject.range)
+            attackingObject.AttackTarget(closestObject);
     }
 }

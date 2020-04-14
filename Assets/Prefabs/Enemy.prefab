@@ -12,9 +12,6 @@ GameObject:
   - component: {fileID: 4834363537745365711}
   - component: {fileID: 4834363537745365710}
   - component: {fileID: 4834363537745365705}
-  - component: {fileID: 4834363537745365709}
-  - component: {fileID: 4834363537745365704}
-  - component: {fileID: 4834363537745365714}
   - component: {fileID: 4834363537745365715}
   - component: {fileID: 4834363537745365712}
   - component: {fileID: 902153502677194486}
@@ -99,84 +96,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4834363537745365709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4834363537745365707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
---- !u!114 &4834363537745365704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4834363537745365707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 2
-  radius: 0.5
-  height: 1
-  repathRate: 0.5
-  canSearch: 1
-  canMove: 1
-  maxSpeed: 1
-  gravity: {x: 0, y: 0, z: 0}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  centerOffsetCompatibility: NaN
-  orientation: 0
-  enableRotation: 1
-  targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
-  rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 2
-  endReachedDistance: 0.2
-  alwaysDrawGizmos: 0
-  slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
---- !u!114 &4834363537745365714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4834363537745365707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  target: {fileID: 0}
 --- !u!114 &4834363537745365715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,8 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f363fb10ad793df4b90e3cefe65d1303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeAttack: {fileID: 902153502677194486}
+  attackingObject: {fileID: 902153502677194486}
   gameProxy: {fileID: 11400000, guid: 41a2114e01faaa0499710ff3f1f7f8f3, type: 2}
+  aggroRange: 10
+  bounty: 10
 --- !u!65 &4834363537745365712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -213,10 +134,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4834363537745365707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f5b2b2fc552dc4cbe7d4324246bf40, type: 3}
+  m_Script: {fileID: 11500000, guid: c358de2613e217b47aed4ab0f7e3cee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 1
-  damage: 0
+  damage: 1
   speed: 0
   reload: 1
+  gameProxy: {fileID: 11400000, guid: 41a2114e01faaa0499710ff3f1f7f8f3, type: 2}
+  type: 1
+  projectilePrefab: {fileID: 0}

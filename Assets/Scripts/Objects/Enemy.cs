@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Pathfinding;
 using UnityEngine;
 
 public class Enemy : PathfindingObject
@@ -36,7 +35,7 @@ public class Enemy : PathfindingObject
         if (minDistance < aggroRange)
         {
             target = closestObject.transform;
-            attack.AttackTarget(closestObject);
+            attackingObject.AttackTarget(closestObject);
         }
         else
         {

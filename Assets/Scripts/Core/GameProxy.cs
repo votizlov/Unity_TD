@@ -19,6 +19,8 @@ public class GameProxy : ScriptableObject
 
     public int Scores { get; private set; }
 
+    public AttackController attackController { get; set; }
+
     //todo public CameraShake CameraShake { get; set; }
 
     public Timer Timer { get; set; }

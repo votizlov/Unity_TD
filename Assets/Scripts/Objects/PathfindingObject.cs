@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Pathfinding;
 using UnityEngine;
+using UnityEngine.AI;
 
-public abstract class PathfindingObject : MonoBehaviour
+public class PathfindingObject : MonoBehaviour
 {
-    public Attack attack = null;
+    public AttackingObject attackingObject = null;
     public GameProxy gameProxy;
-    public AIDestinationSetter destinationSetter;
     public float aggroRange;
+    public NavMeshAgent agent;
 
     protected Transform target;
 
     protected void SetDestination(Transform transform)
     {
-        destinationSetter.target = transform;
+        agent.destination = transform.position;
     }
 }
