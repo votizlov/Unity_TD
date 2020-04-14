@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Base : MonoBehaviour
+public class RangeHitscanAttack : MonoBehaviour
 {
-    public GameProxy gameProxy;
-    public int health;
-
     // Start is called before the first frame update
     void Start()
     {
-        gameProxy.baze = gameObject;
+        
     }
 
     // Update is called once per frame

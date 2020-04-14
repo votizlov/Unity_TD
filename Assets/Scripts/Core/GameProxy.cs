@@ -27,6 +27,7 @@ public class GameProxy : ScriptableObject
 
     public List<GameObject> enemies = new List<GameObject>();
     public List<GameObject> guards = new List<GameObject>();
+    public GameObject baze;
 
     public void ClearState()
     {

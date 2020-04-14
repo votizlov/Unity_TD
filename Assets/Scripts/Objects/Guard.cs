@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Pathfinding;
 using UnityEngine;
 
-public class Enemy : PathfindingObject
+public class Guard : PathfindingObject
 {
+
     // Start is called before the first frame update
     void Start()
     {
-        gameProxy.enemies.Add(gameObject);
+        gameProxy.guards.Add(gameObject);
+        target = gameObject.transform;
     }
 
     private void OnDestroy()
     {
-        gameProxy.enemies.Remove(gameObject);
+        gameProxy.guards.Remove(gameObject);
     }
 
     // Update is called once per frame
@@ -22,12 +22,12 @@ public class Enemy : PathfindingObject
     {
         float minDistance = aggroRange;
         GameObject closestObject = null;
-        foreach (var guard in gameProxy.guards)
+        foreach (var enemy in gameProxy.enemies)
         {
-            if (minDistance < 0 || Vector3.Distance(guard.transform.position, transform.position) <= minDistance)
+            if (minDistance == -1 || Vector3.Distance(enemy.transform.position, transform.position) <= minDistance)
             {
-                minDistance = Vector3.Distance(guard.transform.position, transform.position);
-                closestObject = guard;
+                minDistance = Vector3.Distance(enemy.transform.position, transform.position);
+                closestObject = enemy;
             }
         }
 
@@ -38,7 +38,7 @@ public class Enemy : PathfindingObject
         }
         else
         {
-            target = gameProxy.baze.transform;
+            target = gameObject.transform;
         }
         SetDestination(target);
     }
