@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Enemy : PathfindingObject
 {
+    public int bounty;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class Enemy : PathfindingObject
 
     private void OnDestroy()
     {
+        gameProxy.AddScore(bounty);
         gameProxy.enemies.Remove(gameObject);
     }
 
