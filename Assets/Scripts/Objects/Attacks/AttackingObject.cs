@@ -12,7 +12,7 @@ public class AttackingObject : MonoBehaviour
     public GameObject projectilePrefab;
     protected bool isReloading = false;
 
-    private void Awake()
+    private void Start()
     {
         attackController = gameProxy.attackController;
     }
