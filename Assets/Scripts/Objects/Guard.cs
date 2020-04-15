@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Guard : PathfindingObject
 {
+    public BarracksTower tower;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class Guard : PathfindingObject
     private void OnDestroy()
     {
         gameProxy.guards.Remove(gameObject);
+        tower.onGuardKilled();
     }
 
     // Update is called once per frame

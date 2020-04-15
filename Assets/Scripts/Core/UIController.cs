@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
 
     public GameObject towerPlaceMenu;
 
+    public GameObject anchorPlaceMenu;
+
     public bool isMenuOpened = false;
 
     public GameObject[] availableTowers;
@@ -22,6 +24,7 @@ public class UIController : MonoBehaviour
     {
         gameProxy.AddScoreEvent += UpdateScoreText;
         towerPlaceMenu.SetActive(false);
+        anchorPlaceMenu.SetActive(false);
     }
 
     private void OnDisable()
@@ -45,10 +48,25 @@ public class UIController : MonoBehaviour
         selectedPlace = place;
     }
 
+    public void OpenAnchorPlaceMenu(BarracksTower barracksTower)
+    {
+        if(isMenuOpened) return;
+        isMenuOpened = true;
+        anchorPlaceMenu.SetActive(true);
+        Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //pz.z = 0;
+        anchorPlaceMenu.transform.parent = gameObject.transform;
+    }
+
     public void PlaceTower(int i)
     {
         isMenuOpened = false;
         towerPlaceMenu.SetActive(false);
         selectedPlace.PlaceTower(availableTowers[i]);
+    }
+
+    public void onAnchorPlaced()
+    {
+        isMenuOpened = false;
     }
 }
