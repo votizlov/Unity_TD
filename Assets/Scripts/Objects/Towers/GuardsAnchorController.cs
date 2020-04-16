@@ -7,24 +7,28 @@ public class GuardsAnchorController : MonoBehaviour
     public BarracksTower parentTower;
     public GameProxy gameProxy;
 
-    private bool isFollowingMouse;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        isFollowingMouse = true;
-    }
+    private Ray r;
+    private RaycastHit hit;
+    private Vector3 v;
 
     // Update is called once per frame
     void Update()
     {
-        if (isFollowingMouse && !Input.GetMouseButtonDown(0))
-            gameObject.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!Input.GetMouseButtonUp(0))
+        {
+            r = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(r, out hit, 100f))
+            {
+                v = hit.point;
+                v.y = 1;
+                gameObject.transform.position = v;
+            }
+        }
         else
         {
-            parentTower.onAnchorPointSet();
+            parentTower.onAnchorPointSet(gameObject.transform.position);
             gameProxy.UI.onAnchorPlaced();
-           gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -68,5 +68,6 @@ public class UIController : MonoBehaviour
     public void onAnchorPlaced()
     {
         isMenuOpened = false;
+        anchorPlaceMenu.SetActive(false);
     }
 }

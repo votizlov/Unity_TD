@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField]
     public Wave[] waves;
 
+    public float waveInterval;
+
     public GameProxy gameProxy;
-    // Start is called before the first frame update
+
+    private int currentWave = 0;
     void Start()
     {
-        
+        StartCoroutine(SpawnWave());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator SpawnWave()
     {
-        
+        while (currentWave < waves.Length)
+        {
+            
+            yield return new WaitForSeconds(waveInterval);
+        }
+        gameProxy.OnWawesCleared();
     }
 }

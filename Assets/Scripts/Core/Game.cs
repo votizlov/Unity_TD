@@ -6,11 +6,13 @@ namespace Core
     {
         public GameProxy gameProxy;
         public UIController ui;
+        public Timer timer;
 
         private void Awake()
         {
             gameProxy.attackController = new AttackController();
             gameProxy.UI = ui;
+            gameProxy.Timer = timer;
         }
     }
 }

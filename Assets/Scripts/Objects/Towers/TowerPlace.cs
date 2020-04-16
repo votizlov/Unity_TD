@@ -8,9 +8,11 @@ public class TowerPlace : MonoBehaviour
 {
     public UIController ui;
     public float towerOffsetY;
+    private bool isOccupied = false;
 
     private void OnMouseDown()
     {
+        if (isOccupied) return;
         ui.OpenTowerPlaceMenu(this);
     }
 
@@ -19,5 +21,6 @@ public class TowerPlace : MonoBehaviour
         Vector3 t = transform.position;
         t.y += towerOffsetY;
         GameObject.Instantiate(tower, t, Quaternion.identity);
+        isOccupied = true;
     }
 }

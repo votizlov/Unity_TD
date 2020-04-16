@@ -9,10 +9,6 @@ public class GameProxy : ScriptableObject
     public event Action NewGameEvent;
     public event Action EndGameEvent;
     public event Action<int> AddScoreEvent;
-    public event Action<float> TimerTickEvent;
-    public event Action TimerEndEvent;
-    public event Action TimerAddEvent;
-
     public event Action NewWaveEvent;
 
     public event Action BaseDestroyedEvent;
@@ -22,9 +18,6 @@ public class GameProxy : ScriptableObject
     public AttackController attackController { get; set; }
 
     public UIController UI { get; set; }
-
-    //todo public CameraShake CameraShake { get; set; }
-
     public Timer Timer { get; set; }
 
     private List<GameObject> _objects = new List<GameObject>();
@@ -61,11 +54,6 @@ public class GameProxy : ScriptableObject
         AddScoreEvent?.Invoke(value);
     }
 
-    public void ShakeCam()
-    {
-        //CameraShake.Shake();
-    }
-
     public void NewGame()
     {
         Physics2D.autoSimulation = true;
@@ -73,20 +61,15 @@ public class GameProxy : ScriptableObject
         NewGameEvent?.Invoke();
     }
 
+    public void OnWawesCleared()
+    {
+        
+    }
+
     public void EndGame()
     {
         Physics2D.autoSimulation = false;
 
         EndGameEvent?.Invoke();
-    }
-
-    public void OnTimerTick(float f)
-    {
-        TimerTickEvent?.Invoke(f);
-    }
-
-    public void OnTimerEnd()
-    {
-        TimerEndEvent?.Invoke();
     }
 }

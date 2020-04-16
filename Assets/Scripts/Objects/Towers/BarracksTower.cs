@@ -13,6 +13,7 @@ public class BarracksTower : MonoBehaviour
 
     public float trainingRate;
     private int currentGuards = 0;
+    private Vector3 guardsGroupingPoint;
 
     private void Start()
     {
@@ -27,8 +28,9 @@ public class BarracksTower : MonoBehaviour
         ui.OpenAnchorPlaceMenu(this);
     }
 
-    public void onAnchorPointSet()
+    public void onAnchorPointSet(Vector3 pos)
     {
+        guardsGroupingPoint = pos;
         StartCoroutine(spawnGuard());
     }
 
@@ -37,7 +39,7 @@ public class BarracksTower : MonoBehaviour
         while (currentGuards < maxGuards)
         {
             currentGuards++;
-           GameObject guard = Instantiate(guardPrefab, guardsAnchorPoint.transform.position, Quaternion.identity);
+           GameObject guard = Instantiate(guardPrefab, guardsGroupingPoint, Quaternion.identity);
            guard.GetComponent<Guard>().tower = this;
            yield return new WaitForSeconds(trainingRate);
         }
