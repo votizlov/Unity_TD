@@ -44,6 +44,7 @@ public class Enemy : PathfindingObject
         {
             isInCombat = false;
             target = gameProxy.baze.transform;
+            attackingObject.AttackTarget(gameProxy.baze);
         }
         SetDestination(target);
     }

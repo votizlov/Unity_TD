@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private SpawnerConfig _spawnerConfig;
+    [SerializeField] private GameProxy gameProxy;
 
     private Coroutine _spawnRoutine;
 
@@ -39,12 +40,13 @@ public class Spawner : MonoBehaviour
         {
             var element = _spawnerConfig.GetElement(_counter);
             yield return new WaitForSeconds(element.Delay);
-            while (true)
+            while (element != null)
             {
                 Instantiate(element.enemies[_counter], element.spawnPoint.position, transform.rotation);
                 element = _spawnerConfig.GetElement(++_counter);
                 yield return new WaitForSeconds(element.Delay);
             }
+            gameProxy.OnWawesCleared();
         }
     }
 }

@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
     public GameObject towerPlaceMenu;
 
     public GameObject anchorPlaceMenu;
+    public GameObject winMenu;
+    public GameObject loseMenu;
 
     public bool isMenuOpened = false;
 
@@ -23,13 +25,29 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         gameProxy.AddScoreEvent += UpdateScoreText;
+        gameProxy.BaseDestroyedEvent += OnLose;
+        gameProxy.WavesClearedEvent += OnWin;
         towerPlaceMenu.SetActive(false);
         anchorPlaceMenu.SetActive(false);
+        loseMenu.SetActive(false);
+        winMenu.SetActive(false);
     }
 
     private void OnDisable()
     {
         gameProxy.AddScoreEvent -= UpdateScoreText;
+        gameProxy.BaseDestroyedEvent -= OnLose;
+        gameProxy.WavesClearedEvent -= OnWin;
+    }
+
+    private void OnLose()
+    {
+        loseMenu.SetActive(true);
+    }
+    
+    private void OnWin()
+    {
+        winMenu.SetActive(true);
     }
 
     private void UpdateScoreText(int i)

@@ -13,6 +13,8 @@ public class GameProxy : ScriptableObject
 
     public event Action BaseDestroyedEvent;
 
+    public event Action WavesClearedEvent;
+
     public int Scores { get; private set; }
 
     public AttackController attackController { get; set; }
@@ -56,20 +58,18 @@ public class GameProxy : ScriptableObject
 
     public void NewGame()
     {
-        Physics2D.autoSimulation = true;
         Scores = 0;
         NewGameEvent?.Invoke();
     }
 
     public void OnWawesCleared()
     {
-        
+        WavesClearedEvent?.Invoke();
     }
 
     public void EndGame()
     {
-        Physics2D.autoSimulation = false;
-
-        EndGameEvent?.Invoke();
+        Time.timeScale = 0;
+        BaseDestroyedEvent?.Invoke();
     }
 }
