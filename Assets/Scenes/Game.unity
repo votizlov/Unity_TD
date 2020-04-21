@@ -288,8 +288,8 @@ MonoBehaviour:
   pointsText: {fileID: 543411141}
   towerPlaceMenu: {fileID: 1825834476}
   anchorPlaceMenu: {fileID: 2041514834}
-  winMenu: {fileID: 0}
-  loseMenu: {fileID: 0}
+  winMenu: {fileID: 981700091}
+  loseMenu: {fileID: 600203939}
   isMenuOpened: 0
   availableTowers:
   - {fileID: 2737235670424346134, guid: 3e17122ee3b166547a3d5296af070b11, type: 3}
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c79f0a4d7966744cb40d5b7b562bcbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 1
 --- !u!114 &457596455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +422,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameProxy: {fileID: 11400000, guid: 41a2114e01faaa0499710ff3f1f7f8f3, type: 2}
-  health: 1
 --- !u!1 &519558166
 GameObject:
   m_ObjectHideFlags: 0
