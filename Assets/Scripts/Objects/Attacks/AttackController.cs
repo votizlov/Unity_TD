@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackController
 {
+    //todo add anims
     private GameObject target;
     private AttackingObject attackingObject;
 
@@ -19,7 +20,18 @@ public class AttackController
             case AttackType.MeleeAttack:
                 MeleeAttack();
                 break;
+            case AttackType.SuicideAttack:
+                SuicideAttack();
+                break;
+            default:
+                Debug.Log("Unknown Attack");
+                break;
         }
+    }
+
+    private void SuicideAttack()
+    {
+        target.GetComponent<DamagableObject>().ReduceHealth(attackingObject.damage);
     }
 
     private void RangeBulletAttack()
@@ -41,5 +53,6 @@ public class AttackController
 public enum AttackType
 {
     RangeBulletAttack,
-    MeleeAttack
+    MeleeAttack,
+    SuicideAttack
 }

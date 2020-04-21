@@ -6,6 +6,8 @@ using UnityEngine;
 public class Enemy : PathfindingObject
 {
     public int bounty;
+
+    private bool isInCombat = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +36,13 @@ public class Enemy : PathfindingObject
 
         if (minDistance < aggroRange)
         {
+            isInCombat = true;
             target = closestObject.transform;
             attackingObject.AttackTarget(closestObject);
         }
         else
         {
+            isInCombat = false;
             target = gameProxy.baze.transform;
         }
         SetDestination(target);

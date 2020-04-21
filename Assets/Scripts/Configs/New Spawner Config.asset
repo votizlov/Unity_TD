@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c525e54ff186a234a8c638af76482486, type: 3}
+  m_Name: New Spawner Config
+  m_EditorClassIdentifier: 
+  Waves:
+  - {fileID: 11400000, guid: 070ce6c1f72f2934298655ee4d931da6, type: 2}

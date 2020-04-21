@@ -28,6 +28,9 @@ public class ShootClosestTower : MonoBehaviour
         }
 
         if (minDistance < attackingObject.range)
+        {
+            transform.LookAt(closestObject.transform);
             attackingObject.AttackTarget(closestObject);
+        }
     }
 }

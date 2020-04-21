@@ -26,7 +26,7 @@ public class GuardsAnchorController : MonoBehaviour
         }
         else
         {
-            parentTower.onAnchorPointSet(gameObject.transform.position);
+            parentTower.OnAnchorPointSet(gameObject.transform);
             gameProxy.UI.onAnchorPlaced();
             gameObject.SetActive(false);
         }

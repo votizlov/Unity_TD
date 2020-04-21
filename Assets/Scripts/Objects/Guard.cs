@@ -5,6 +5,7 @@ using UnityEngine;
 public class Guard : PathfindingObject
 {
     public BarracksTower tower;
+    private bool isInCombat = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,12 +36,14 @@ public class Guard : PathfindingObject
 
         if (minDistance < aggroRange)
         {
+            isInCombat = true;
             target = closestObject.transform;
             attackingObject.AttackTarget(closestObject);
         }
         else
         {
-            target = gameObject.transform;
+            isInCombat = false;
+            target = tower.guardsGroupingPoint;
         }
         SetDestination(target);
     }

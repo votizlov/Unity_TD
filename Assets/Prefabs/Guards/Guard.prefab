@@ -12,15 +12,14 @@ GameObject:
   - component: {fileID: 5340833943909948991}
   - component: {fileID: 5340833943909948990}
   - component: {fileID: 5340833943909948985}
-  - component: {fileID: 5340833943909948960}
   - component: {fileID: 399835197346071046}
   - component: {fileID: 651166154945550431}
   - component: {fileID: 651166154945550425}
   - component: {fileID: 651166154945550430}
   - component: {fileID: 651166154945550428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Damagable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!65 &5340833943909948985
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5340833943909948987}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &5340833943909948960
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

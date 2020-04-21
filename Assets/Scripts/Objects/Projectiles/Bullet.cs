@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public float damage;
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.GetComponent<DamagableObject>()!=null)
+        if(other.gameObject.CompareTag("Damagable"))
             other.gameObject.GetComponent<DamagableObject>().ReduceHealth(damage);
             
         Destroy(gameObject);
