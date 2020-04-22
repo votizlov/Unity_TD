@@ -24,6 +24,7 @@ namespace Objects
         }
 
         private int _counter = 0;
+        private bool isWavesLeft = true;
 
         private void OnEnable()
         {
@@ -41,14 +42,20 @@ namespace Objects
         {
             get
             {
-                var element = _spawnerConfig.GetElement(_counter);
-                yield return new WaitForSeconds(element.Delay);
-                while (element != null)
+                while (isWavesLeft)
                 {
-                    Instantiate(element.enemies[_counter], element.spawnPoint.position, transform.rotation);
-                    element = _spawnerConfig.GetElement(++_counter);
-                    yield return new WaitForSeconds(element.Delay);
+                    var element = _spawnerConfig.GetElement(_counter++);
+
+                    if (element != null)
+                    {
+                        yield return new WaitForSeconds(element.Delay);
+                        foreach (var enemy in element.enemies)
+                        {
+                            Instantiate(enemy, element.spawnPoint.position, transform.rotation);
+                        }
+                    }
                 }
+
                 gameProxy.OnWawesCleared();
             }
         }
