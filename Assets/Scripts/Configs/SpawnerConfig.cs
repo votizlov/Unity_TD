@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Objects;
 using UnityEngine;
 
 namespace Configs
 {
-    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Wave", order = 2)]
-    public class Wave : ScriptableObject
-    {
-        public List<GameObject> enemies;
-        public Transform spawnPoint;
-        public float Delay;
-    }
 
     [CreateAssetMenu(menuName = "Spawner config")]
     public class SpawnerConfig : ScriptableObject

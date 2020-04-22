@@ -54,6 +54,10 @@ namespace Objects
                             Instantiate(enemy, element.spawnPoint.position, transform.rotation);
                         }
                     }
+                    else
+                    {
+                        isWavesLeft = false;
+                    }
                 }
 
                 gameProxy.OnWawesCleared();

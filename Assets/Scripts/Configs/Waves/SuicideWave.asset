@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: ba0e530d7e3409444a08928d8fd6e317, type: 3}
   m_Name: SuicideWave
   m_EditorClassIdentifier: Assembly-CSharp:Configs:Wave
   enemies:
   - {fileID: 238276264540534020, guid: 7c512d59406c8cd478490d813d50061c, type: 3}
-  spawnPoint: {fileID: 3954376573181655323, guid: 0bd72866f52d4074683707cc2a3a1f0c,
+  spawnPoint: {fileID: 9219177516886135534, guid: ac19939ec5bc5514eaf94655596e54bd,
     type: 3}
-  Delay: 1
+  Delay: 2
