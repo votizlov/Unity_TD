@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 457596455}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: Damagable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2115,10 +2115,12 @@ MonoBehaviour:
     prefab: {fileID: 3414155728912629909, guid: ff4370b8180947c44a935a924cc0b39b,
       type: 3}
     count: 10
+    ferula: {fileID: 0}
   - name: RangeTowerBullet
     prefab: {fileID: 5330725301046852016, guid: 636f46ac4ab16e047ba13d5e891ad9d6,
       type: 3}
     count: 10
+    ferula: {fileID: 0}
 --- !u!4 &978841192
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: SuicideWave
   m_EditorClassIdentifier: Assembly-CSharp:Configs:Wave
-  enemies: []
-  spawnPoint: {fileID: 0}
-  Delay: 0
+  enemies:
+  - {fileID: 238276264540534020, guid: 7c512d59406c8cd478490d813d50061c, type: 3}
+  spawnPoint: {fileID: 3954376573181655323, guid: 0bd72866f52d4074683707cc2a3a1f0c,
+    type: 3}
+  Delay: 1

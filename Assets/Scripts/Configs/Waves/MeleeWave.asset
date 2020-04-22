@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: MeleeWave
   m_EditorClassIdentifier: Assembly-CSharp:Configs:Wave
-  enemies: []
-  spawnPoint: {fileID: 0}
-  Delay: 0
+  enemies:
+  - {fileID: 4834363537745365707, guid: 755216a354cb45342b2ccf9ebec80b95, type: 3}
+  spawnPoint: {fileID: 9219177516886135534, guid: ac19939ec5bc5514eaf94655596e54bd,
+    type: 3}
+  Delay: 1

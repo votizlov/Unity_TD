@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: RangeWave
   m_EditorClassIdentifier: Assembly-CSharp:Configs:Wave
-  enemies: []
-  spawnPoint: {fileID: 0}
-  Delay: 0
+  enemies:
+  - {fileID: 5424430722426449850, guid: 0d939f5231fde8441a31562b278067e4, type: 3}
+  - {fileID: 5424430722426449850, guid: 0d939f5231fde8441a31562b278067e4, type: 3}
+  - {fileID: 5424430722426449850, guid: 0d939f5231fde8441a31562b278067e4, type: 3}
+  - {fileID: 5424430722426449850, guid: 0d939f5231fde8441a31562b278067e4, type: 3}
+  - {fileID: 5424430722426449850, guid: 0d939f5231fde8441a31562b278067e4, type: 3}
+  spawnPoint: {fileID: 6181599130374892352, guid: 1f109a13a08e61a459d84105c78f35d8,
+    type: 3}
+  Delay: 5
