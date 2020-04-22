@@ -2081,6 +2081,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragSpeed: 2
   uiController: {fileID: 351184324}
+--- !u!1 &978841190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 978841192}
+  - component: {fileID: 978841191}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &978841191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978841190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce56ac6b8034ba845bf3c215709dd927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - name: RangeEnemyBullet
+    prefab: {fileID: 3414155728912629909, guid: ff4370b8180947c44a935a924cc0b39b,
+      type: 3}
+    count: 10
+  - name: RangeTowerBullet
+    prefab: {fileID: 5330725301046852016, guid: 636f46ac4ab16e047ba13d5e891ad9d6,
+      type: 3}
+    count: 10
+--- !u!4 &978841192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978841190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3292637, y: -0.64557326, z: 0.45930278}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &981700091
 GameObject:
   m_ObjectHideFlags: 0

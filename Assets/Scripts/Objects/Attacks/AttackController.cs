@@ -37,8 +37,7 @@ public class AttackController
     private void RangeBulletAttack()
     {
         var position = attackingObject.transform.position;
-        GameObject bullet =
-            (GameObject) GameObject.Instantiate(attackingObject.projectilePrefab, position, Quaternion.identity);
+        GameObject bullet = PoolManager.GetObject(attackingObject.projectilePrefab.name, position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity =
             Vector3.Normalize(target.transform.position - position) * attackingObject.speed;
         bullet.GetComponent<Bullet>().damage = attackingObject.damage;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6939989748480585042}
   - component: {fileID: 5783649119558274250}
   - component: {fileID: 5841857921015537617}
+  - component: {fileID: 5330725301046852016}
   m_Layer: 8
   m_Name: RangeTowerBullet
   m_TagString: Untagged
@@ -124,3 +125,15 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5330725301046852016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2917308446327271360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5a46ea744aef7429c809ebca81252a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,6 @@ public class Bullet : MonoBehaviour
         if(other.gameObject.CompareTag("Damagable"))
             other.gameObject.GetComponent<DamagableObject>().ReduceHealth(damage);
             
-        Destroy(gameObject);
+        GetComponent<PoolObject>().ReturnToPool ();
     }
 }
