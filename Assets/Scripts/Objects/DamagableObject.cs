@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DamagableObject : MonoBehaviour
+namespace Objects
 {
-    public float health;
-
-    public void ReduceHealth(float damage)
+    public class DamagableObject : MonoBehaviour
     {
-        health -= damage;
-        if(health<=0)
-            Destroy(gameObject);
+        public float health;
+
+        public void ReduceHealth(float damage)
+        {
+            health -= damage;
+            if(health<=0)
+                Destroy(gameObject);
+        }
     }
 }

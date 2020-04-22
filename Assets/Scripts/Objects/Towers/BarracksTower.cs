@@ -1,53 +1,55 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using Core;
 using UnityEngine;
 
-public class BarracksTower : MonoBehaviour
+namespace Objects.Towers
 {
-    public GameObject guardsAnchorPoint;
-    public GameObject guardPrefab;
-    public GameProxy gameProxy;
-    public UIController ui;
-    public int maxGuards;
-
-    public float trainingRate;
-    private int currentGuards = 0;
-    public Transform guardsGroupingPoint;
-
-    private void Start()
+    public class BarracksTower : MonoBehaviour
     {
-        ui = gameProxy.UI;
-        ui.OpenAnchorPlaceMenu(this);
-        GameObject anchor = Instantiate(guardsAnchorPoint, transform.position, Quaternion.identity);
-        anchor.GetComponent<GuardsAnchorController>().parentTower = this;
-    }
+        public GameObject guardsAnchorPoint;
+        public GameObject guardPrefab;
+        public GameProxy gameProxy;
+        public UIController ui;
+        public int maxGuards;
 
-    private void OnMouseDown()
-    {
-        ui.OpenAnchorPlaceMenu(this);
-    }
+        public float trainingRate;
+        private int currentGuards = 0;
+        public Transform guardsGroupingPoint;
 
-    public void OnAnchorPointSet(Transform pos)
-    {
-        guardsGroupingPoint = pos;
-        StartCoroutine(spawnGuard());
-    }
-
-    private IEnumerator spawnGuard()
-    {
-        while (currentGuards < maxGuards)
+        private void Start()
         {
-            currentGuards++;
-           GameObject guard = Instantiate(guardPrefab, guardsGroupingPoint.position, Quaternion.identity);
-           guard.GetComponent<Guard>().tower = this;
-           yield return new WaitForSeconds(trainingRate);
+            ui = gameProxy.UI;
+            ui.OpenAnchorPlaceMenu(this);
+            GameObject anchor = Instantiate(guardsAnchorPoint, transform.position, Quaternion.identity);
+            anchor.GetComponent<GuardsAnchorController>().parentTower = this;
         }
-    }
 
-    public void onGuardKilled()
-    {
-        currentGuards--;
-        StartCoroutine(spawnGuard());
+        private void OnMouseDown()
+        {
+            ui.OpenAnchorPlaceMenu(this);
+        }
+
+        public void OnAnchorPointSet(Transform pos)
+        {
+            guardsGroupingPoint = pos;
+            StartCoroutine(spawnGuard());
+        }
+
+        private IEnumerator spawnGuard()
+        {
+            while (currentGuards < maxGuards)
+            {
+                currentGuards++;
+                GameObject guard = Instantiate(guardPrefab, guardsGroupingPoint.position, Quaternion.identity);
+                guard.GetComponent<Guard>().tower = this;
+                yield return new WaitForSeconds(trainingRate);
+            }
+        }
+
+        public void onGuardKilled()
+        {
+            currentGuards--;
+            StartCoroutine(spawnGuard());
+        }
     }
 }

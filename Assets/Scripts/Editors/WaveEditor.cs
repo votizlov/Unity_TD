@@ -1,105 +1,107 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Configs;
 using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-[CustomEditor(typeof(Wave))]
-public class WaveEditor : Editor
+namespace Editors
 {
-    private Wave Config;
-    private List<FieldInfo> Fields = new List<FieldInfo>(0);
-
-    void OnEnable()
+    [CustomEditor(typeof(Wave))]
+    public class WaveEditor : Editor
     {
-        UpdateFields();
-    }
+        private Wave Config;
+        private List<FieldInfo> Fields = new List<FieldInfo>(0);
 
-    private void DrawAllFields(string arrayName, Action<int, SerializedProperty> initialBlockCallback)
-    {
-        foreach (var field in Fields)
+        void OnEnable()
         {
-            var property = serializedObject.FindProperty(field.Name);
-            if (property == null)
-            {
-                continue;
-            }
+            UpdateFields();
+        }
 
-            if (property.isArray && field.Name == arrayName)
+        private void DrawAllFields(string arrayName, Action<int, SerializedProperty> initialBlockCallback)
+        {
+            foreach (var field in Fields)
             {
-                for (int i = 0; i < property.arraySize; i++)
+                var property = serializedObject.FindProperty(field.Name);
+                if (property == null)
                 {
-                    var arrayElement = property.GetArrayElementAtIndex(i);
-                    initialBlockCallback?.Invoke(i, arrayElement);
+                    continue;
+                }
+
+                if (property.isArray && field.Name == arrayName)
+                {
+                    for (int i = 0; i < property.arraySize; i++)
+                    {
+                        var arrayElement = property.GetArrayElementAtIndex(i);
+                        initialBlockCallback?.Invoke(i, arrayElement);
+                    }
                 }
             }
         }
-    }
 
-    private void UpdateFields()
-    {
-        if (typeof(Wave) == target.GetType())
+        private void UpdateFields()
         {
-            Config = (Wave) target;
-            if (Config != null)
+            if (typeof(Wave) == target.GetType())
             {
-                var configType = typeof(SpawnerConfig);
-                List<Array> fieldsArrays = new List<Array> {configType.GetFields()};
-                var derived = configType;
-                do
+                Config = (Wave) target;
+                if (Config != null)
                 {
-                    derived = derived.BaseType;
-                    if (derived != null)
+                    var configType = typeof(SpawnerConfig);
+                    List<Array> fieldsArrays = new List<Array> {configType.GetFields()};
+                    var derived = configType;
+                    do
                     {
-                        fieldsArrays.Add(derived.GetFields());
-                    }
-                } while (derived != null);
-
-                if (fieldsArrays.Count > 0)
-                {
-                    List<FieldInfo> allFields = new List<FieldInfo>();
-                    List<string> fieldsNames = new List<string>();
-                    for (int i = fieldsArrays.Count - 1; i >= 0; i--)
-                    {
-                        for (int j = 0; j < fieldsArrays[i].Length; j++)
+                        derived = derived.BaseType;
+                        if (derived != null)
                         {
-                            var field = fieldsArrays[i].GetValue(j) as FieldInfo;
-                            if (!fieldsNames.Contains(field.Name))
+                            fieldsArrays.Add(derived.GetFields());
+                        }
+                    } while (derived != null);
+
+                    if (fieldsArrays.Count > 0)
+                    {
+                        List<FieldInfo> allFields = new List<FieldInfo>();
+                        List<string> fieldsNames = new List<string>();
+                        for (int i = fieldsArrays.Count - 1; i >= 0; i--)
+                        {
+                            for (int j = 0; j < fieldsArrays[i].Length; j++)
                             {
-                                allFields.Add(field);
-                                fieldsNames.Add(field.Name);
+                                var field = fieldsArrays[i].GetValue(j) as FieldInfo;
+                                if (!fieldsNames.Contains(field.Name))
+                                {
+                                    allFields.Add(field);
+                                    fieldsNames.Add(field.Name);
+                                }
                             }
                         }
-                    }
 
-                    Fields = allFields;
+                        Fields = allFields;
+                    }
                 }
             }
         }
-    }
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-
-
-        var prop = serializedObject.FindProperty("enemies");
-        EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
-        prop = serializedObject.FindProperty("spawnPoint");
-        EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
-        prop = serializedObject.FindProperty("Delay");
-        EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
-
-
-        if (GUILayout.Button("Add enemy"))
+        public override void OnInspectorGUI()
         {
-            var array = Config.enemies;
-            array.Add(null);
-        }
+            serializedObject.Update();
 
-        UpdateFields();
-        serializedObject.ApplyModifiedProperties();
+
+            var prop = serializedObject.FindProperty("enemies");
+            EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
+            prop = serializedObject.FindProperty("spawnPoint");
+            EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
+            prop = serializedObject.FindProperty("Delay");
+            EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
+
+
+            if (GUILayout.Button("Add enemy"))
+            {
+                var array = Config.enemies;
+                array.Add(null);
+            }
+
+            UpdateFields();
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }

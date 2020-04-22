@@ -1,102 +1,104 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Configs;
 using UnityEditor;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-[CustomEditor(typeof(SpawnerConfig))]
-public class SpawnerConfigEditor : Editor
+namespace Editors
 {
-    private SpawnerConfig Config;
-    private List<FieldInfo> Fields = new List<FieldInfo>(0);
-
-    void OnEnable()
+    [CustomEditor(typeof(SpawnerConfig))]
+    public class SpawnerConfigEditor : Editor
     {
-        UpdateFields();
-    }
+        private SpawnerConfig Config;
+        private List<FieldInfo> Fields = new List<FieldInfo>(0);
 
-    private void DrawAllFields(string arrayName, Action<int, SerializedProperty> initialBlockCallback)
-    {
-        foreach (var field in Fields)
+        void OnEnable()
         {
-            var property = serializedObject.FindProperty(field.Name);
-            if (property == null)
-            {
-                continue;
-            }
+            UpdateFields();
+        }
 
-            if (property.isArray && field.Name == arrayName)
+        private void DrawAllFields(string arrayName, Action<int, SerializedProperty> initialBlockCallback)
+        {
+            foreach (var field in Fields)
             {
-                for (int i = 0; i < property.arraySize; i++)
+                var property = serializedObject.FindProperty(field.Name);
+                if (property == null)
                 {
-                    var arrayElement = property.GetArrayElementAtIndex(i);
-                    initialBlockCallback?.Invoke(i, arrayElement);
+                    continue;
+                }
+
+                if (property.isArray && field.Name == arrayName)
+                {
+                    for (int i = 0; i < property.arraySize; i++)
+                    {
+                        var arrayElement = property.GetArrayElementAtIndex(i);
+                        initialBlockCallback?.Invoke(i, arrayElement);
+                    }
                 }
             }
         }
-    }
 
-    private void UpdateFields()
-    {
-        if (typeof(SpawnerConfig) == target.GetType())
+        private void UpdateFields()
         {
-            Config = (SpawnerConfig) target;
-            if (Config != null)
+            if (typeof(SpawnerConfig) == target.GetType())
             {
-                var configType = typeof(SpawnerConfig);
-                List<Array> fieldsArrays = new List<Array> {configType.GetFields()};
-                var derived = configType;
-                do
+                Config = (SpawnerConfig) target;
+                if (Config != null)
                 {
-                    derived = derived.BaseType;
-                    if (derived != null)
+                    var configType = typeof(SpawnerConfig);
+                    List<Array> fieldsArrays = new List<Array> {configType.GetFields()};
+                    var derived = configType;
+                    do
                     {
-                        fieldsArrays.Add(derived.GetFields());
-                    }
-                } while (derived != null);
-
-                if (fieldsArrays.Count > 0)
-                {
-                    List<FieldInfo> allFields = new List<FieldInfo>();
-                    List<string> fieldsNames = new List<string>();
-                    for (int i = fieldsArrays.Count - 1; i >= 0; i--)
-                    {
-                        for (int j = 0; j < fieldsArrays[i].Length; j++)
+                        derived = derived.BaseType;
+                        if (derived != null)
                         {
-                            var field = fieldsArrays[i].GetValue(j) as FieldInfo;
-                            if (!fieldsNames.Contains(field.Name))
+                            fieldsArrays.Add(derived.GetFields());
+                        }
+                    } while (derived != null);
+
+                    if (fieldsArrays.Count > 0)
+                    {
+                        List<FieldInfo> allFields = new List<FieldInfo>();
+                        List<string> fieldsNames = new List<string>();
+                        for (int i = fieldsArrays.Count - 1; i >= 0; i--)
+                        {
+                            for (int j = 0; j < fieldsArrays[i].Length; j++)
                             {
-                                allFields.Add(field);
-                                fieldsNames.Add(field.Name);
+                                var field = fieldsArrays[i].GetValue(j) as FieldInfo;
+                                if (!fieldsNames.Contains(field.Name))
+                                {
+                                    allFields.Add(field);
+                                    fieldsNames.Add(field.Name);
+                                }
                             }
                         }
-                    }
 
-                    Fields = allFields;
+                        Fields = allFields;
+                    }
                 }
             }
         }
-    }
 
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-
-        foreach (var field in Fields)
+        public override void OnInspectorGUI()
         {
-            var prop = serializedObject.FindProperty(field.Name);
-            EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
-        }
+            serializedObject.Update();
 
-        if (GUILayout.Button("Add wave"))
-        {
-            var array = Config.Waves;
-            array.Add(ScriptableObject.CreateInstance<Wave>());
-        }
+            foreach (var field in Fields)
+            {
+                var prop = serializedObject.FindProperty(field.Name);
+                EditorGUILayout.PropertyField(prop, new GUIContent(prop.name));
+            }
 
-        UpdateFields();
-        serializedObject.ApplyModifiedProperties();
+            if (GUILayout.Button("Add wave"))
+            {
+                var array = Config.Waves;
+                array.Add(ScriptableObject.CreateInstance<Wave>());
+            }
+
+            UpdateFields();
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }

@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+namespace Objects
 {
-    public TMP_Text text;
-    public float timeOfTick = 1f;
-    private float currentTime = 0f;
-
-    private void Start()
+    public class Timer : MonoBehaviour
     {
-        StartCoroutine(Counter());
-    }
+        public TMP_Text text;
+        public float timeOfTick = 1f;
+        private float currentTime = 0f;
 
-    private IEnumerator Counter()
-    {
-        while (true)
+        private void Start()
         {
-            currentTime += timeOfTick;
-            text.text = currentTime.ToString();
-            yield return new WaitForSeconds(timeOfTick);
+            StartCoroutine(Counter());
+        }
+
+        private IEnumerator Counter()
+        {
+            while (true)
+            {
+                currentTime += timeOfTick;
+                text.text = currentTime.ToString();
+                yield return new WaitForSeconds(timeOfTick);
+            }
         }
     }
 }

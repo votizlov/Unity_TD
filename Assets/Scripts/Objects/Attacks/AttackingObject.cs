@@ -1,38 +1,40 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using Core;
 using UnityEngine;
 
-public class AttackingObject : MonoBehaviour
+namespace Objects.Attacks
 {
-    public float range, damage, speed, reload;
-    private AttackController attackController;
-    public GameProxy gameProxy;
-    public AttackType type;
-    public GameObject projectilePrefab;
-    protected bool isReloading = false;
-
-    private void Start()
+    public class AttackingObject : MonoBehaviour
     {
-        attackController = gameProxy.attackController;
-    }
+        public float range, damage, speed, reload;
+        private AttackController attackController;
+        public GameProxy gameProxy;
+        public AttackType type;
+        public GameObject projectilePrefab;
+        private bool isReloading = false;
 
-    private IEnumerator Reloading()
-    {
-        isReloading = true;
-        yield return new WaitForSeconds(reload);
-        isReloading = false;
-    }
+        private void Start()
+        {
+            attackController = gameProxy.attackController;
+        }
 
-    protected bool CheckRange(Transform t)
-    {
-        return !(Vector3.Distance(t.position, transform.position) <= range) ;
-    }
+        private IEnumerator Reloading()
+        {
+            isReloading = true;
+            yield return new WaitForSeconds(reload);
+            isReloading = false;
+        }
 
-    public void AttackTarget(GameObject target)
-    {
-        if (isReloading||CheckRange(target.transform)) return;
-        attackController.AttackTarget(this,target);
-        StartCoroutine(Reloading());
+        protected bool CheckRange(Transform t)
+        {
+            return !(Vector3.Distance(t.position, transform.position) <= range) ;
+        }
+
+        public void AttackTarget(GameObject target)
+        {
+            if (isReloading||CheckRange(target.transform)) return;
+            attackController.AttackTarget(this,target);
+            StartCoroutine(Reloading());
+        }
     }
 }

@@ -1,34 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Core;
 using UnityEngine;
 
-public class GuardsAnchorController : MonoBehaviour
+namespace Objects.Towers
 {
-    public BarracksTower parentTower;
-    public GameProxy gameProxy;
-
-    private Ray r;
-    private RaycastHit hit;
-    private Vector3 v;
-
-    // Update is called once per frame
-    void Update()
+    public class GuardsAnchorController : MonoBehaviour
     {
-        if (!Input.GetMouseButtonUp(0))
+        public BarracksTower parentTower;
+        public GameProxy gameProxy;
+
+        private Ray r;
+        private RaycastHit hit;
+        private Vector3 v;
+
+        // Update is called once per frame
+        void Update()
         {
-            r = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(r, out hit, 100f))
+            if (!Input.GetMouseButtonUp(0))
             {
-                v = hit.point;
-                v.y = 1;
-                gameObject.transform.position = v;
+                r = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(r, out hit, 100f))
+                {
+                    v = hit.point;
+                    v.y = 1;
+                    gameObject.transform.position = v;
+                }
             }
-        }
-        else
-        {
-            parentTower.OnAnchorPointSet(gameObject.transform);
-            gameProxy.UI.onAnchorPlaced();
-            gameObject.SetActive(false);
+            else
+            {
+                parentTower.OnAnchorPointSet(gameObject.transform);
+                gameProxy.UI.onAnchorPlaced();
+                gameObject.SetActive(false);
+            }
         }
     }
 }

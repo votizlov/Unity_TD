@@ -1,51 +1,51 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Enemy : PathfindingObject
+namespace Objects
 {
-    public int bounty;
-
-    private bool isInCombat = false;
-    // Start is called before the first frame update
-    void Start()
+    public class Enemy : PathfindingObject
     {
-        gameProxy.enemies.Add(gameObject);
-    }
+        public int bounty;
 
-    private void OnDestroy()
-    {
-        gameProxy.AddScore(bounty);
-        gameProxy.enemies.Remove(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        float minDistance = aggroRange;
-        GameObject closestObject = null;
-        foreach (var guard in gameProxy.guards)
+        private bool isInCombat = false;
+        // Start is called before the first frame update
+        void Start()
         {
-            if (minDistance < 0 || Vector3.Distance(guard.transform.position, transform.position) <= minDistance)
+            gameProxy.enemies.Add(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            gameProxy.AddScore(bounty);
+            gameProxy.enemies.Remove(gameObject);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            float minDistance = aggroRange;
+            GameObject closestObject = null;
+            foreach (var guard in gameProxy.guards)
             {
-                minDistance = Vector3.Distance(guard.transform.position, transform.position);
-                closestObject = guard;
+                if (minDistance < 0 || Vector3.Distance(guard.transform.position, transform.position) <= minDistance)
+                {
+                    minDistance = Vector3.Distance(guard.transform.position, transform.position);
+                    closestObject = guard;
+                }
             }
-        }
 
-        if (minDistance < aggroRange)
-        {
-            isInCombat = true;
-            target = closestObject.transform;
-            attackingObject.AttackTarget(closestObject);
+            if (minDistance < aggroRange)
+            {
+                isInCombat = true;
+                target = closestObject.transform;
+                attackingObject.AttackTarget(closestObject);
+            }
+            else
+            {
+                isInCombat = false;
+                target = gameProxy.baze.transform;
+                attackingObject.AttackTarget(gameProxy.baze);
+            }
+            SetDestination(target);
         }
-        else
-        {
-            isInCombat = false;
-            target = gameProxy.baze.transform;
-            attackingObject.AttackTarget(gameProxy.baze);
-        }
-        SetDestination(target);
     }
 }

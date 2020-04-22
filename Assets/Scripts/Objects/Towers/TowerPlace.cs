@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Core;
+﻿using Core;
 using UnityEngine;
 
-public class TowerPlace : MonoBehaviour
+namespace Objects.Towers
 {
-    public UIController ui;
-    public float towerOffsetY;
-    private bool isOccupied = false;
-
-    private void OnMouseDown()
+    public class TowerPlace : MonoBehaviour
     {
-        if (isOccupied) return;
-        ui.OpenTowerPlaceMenu(this);
-    }
+        public UIController ui;
+        public float towerOffsetY;
+        private bool isOccupied = false;
 
-    public void PlaceTower(GameObject tower)
-    {
-        Vector3 t = transform.position;
-        t.y += towerOffsetY;
-        GameObject.Instantiate(tower, t, Quaternion.identity);
-        isOccupied = true;
+        private void OnMouseDown()
+        {
+            if (isOccupied) return;
+            ui.OpenTowerPlaceMenu(this);
+        }
+
+        public void PlaceTower(GameObject tower)
+        {
+            Vector3 t = transform.position;
+            t.y += towerOffsetY;
+            GameObject.Instantiate(tower, t, Quaternion.identity);
+            isOccupied = true;
+        }
     }
 }

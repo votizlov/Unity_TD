@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[AddComponentMenu("Pool/PoolObject")]
-public class PoolObject : MonoBehaviour {
+namespace Core.Pooling
+{
+    [AddComponentMenu("Pool/PoolObject")]
+    public class PoolObject : MonoBehaviour {
 
-    #region Interface
-    public void ReturnToPool () {
-        gameObject.SetActive (false);
+        #region Interface
+        public void ReturnToPool () {
+            gameObject.SetActive (false);
+        }
+        #endregion
     }
-    #endregion
 }

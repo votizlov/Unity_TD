@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Core.Pooling;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace Objects.Projectiles
 {
-    public float damage;
-    private void OnCollisionEnter(Collision other)
+    public class Bullet : MonoBehaviour
     {
-        if(other.gameObject.CompareTag("Damagable"))
-            other.gameObject.GetComponent<DamagableObject>().ReduceHealth(damage);
+        public float damage;
+        private void OnCollisionEnter(Collision other)
+        {
+            if(other.gameObject.CompareTag("Damagable"))
+                other.gameObject.GetComponent<DamagableObject>().ReduceHealth(damage);
             
-        GetComponent<PoolObject>().ReturnToPool ();
+            GetComponent<PoolObject>().ReturnToPool ();
+        }
     }
 }

@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Core;
 using UnityEngine;
 
-public class Base : MonoBehaviour
+namespace Objects
 {
-    public GameProxy gameProxy;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Base : MonoBehaviour
     {
-        gameProxy.baze = gameObject;
-    }
+        public GameProxy gameProxy;
 
-    private void OnDestroy()
-    {
-        gameProxy.EndGame();
+        // Start is called before the first frame update
+        void Start()
+        {
+            gameProxy.baze = gameObject;
+        }
+
+        private void OnDestroy()
+        {
+            gameProxy.EndGame();
+        }
     }
 }

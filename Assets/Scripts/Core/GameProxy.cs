@@ -1,75 +1,79 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Objects;
+using Objects.Attacks;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/GameProxy", order = 1)]
-public class GameProxy : ScriptableObject
+namespace Core
 {
-    public event Action NewGameEvent;
-    public event Action EndGameEvent;
-    public event Action<int> AddScoreEvent;
-    public event Action NewWaveEvent;
-
-    public event Action BaseDestroyedEvent;
-
-    public event Action WavesClearedEvent;
-
-    public int Scores { get; private set; }
-
-    public AttackController attackController { get; set; }
-
-    public UIController UI { get; set; }
-    public Timer Timer { get; set; }
-
-    private List<GameObject> _objects = new List<GameObject>();
-
-    public List<GameObject> enemies = new List<GameObject>();
-    public List<GameObject> guards = new List<GameObject>();
-    public GameObject baze;
-
-    public void ClearState()
+    [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/GameProxy", order = 1)]
+    public class GameProxy : ScriptableObject
     {
-        Scores = 0;
-    }
+        public event Action NewGameEvent;
+        public event Action EndGameEvent;
+        public event Action<int> AddScoreEvent;
+        public event Action NewWaveEvent;
 
-    public void AddObject(GameObject obj)
-    {
-        _objects.Add(obj);
-    }
+        public event Action BaseDestroyedEvent;
 
-    public void RemoveObject(GameObject obj)
-    {
-        _objects.Remove(obj);
-    }
+        public event Action WavesClearedEvent;
 
-    public void AddScore(int value)
-    {
-        Scores += value;
+        public int Scores { get; private set; }
 
-        if (Scores > PlayerPrefs.GetInt("Highscore"))
+        public AttackController attackController { get; set; }
+
+        public UIController UI { get; set; }
+        public Timer Timer { get; set; }
+
+        private List<GameObject> _objects = new List<GameObject>();
+
+        public List<GameObject> enemies = new List<GameObject>();
+        public List<GameObject> guards = new List<GameObject>();
+        public GameObject baze;
+
+        public void ClearState()
         {
-            PlayerPrefs.SetInt("Highscore", Scores);
-            PlayerPrefs.Save();
+            Scores = 0;
         }
 
-        AddScoreEvent?.Invoke(value);
-    }
+        public void AddObject(GameObject obj)
+        {
+            _objects.Add(obj);
+        }
 
-    public void NewGame()
-    {
-        Scores = 0;
-        NewGameEvent?.Invoke();
-    }
+        public void RemoveObject(GameObject obj)
+        {
+            _objects.Remove(obj);
+        }
 
-    public void OnWawesCleared()
-    {
-        WavesClearedEvent?.Invoke();
-    }
+        public void AddScore(int value)
+        {
+            Scores += value;
 
-    public void EndGame()
-    {
-        Time.timeScale = 0;
-        BaseDestroyedEvent?.Invoke();
+            if (Scores > PlayerPrefs.GetInt("Highscore"))
+            {
+                PlayerPrefs.SetInt("Highscore", Scores);
+                PlayerPrefs.Save();
+            }
+
+            AddScoreEvent?.Invoke(value);
+        }
+
+        public void NewGame()
+        {
+            Scores = 0;
+            NewGameEvent?.Invoke();
+        }
+
+        public void OnWawesCleared()
+        {
+            WavesClearedEvent?.Invoke();
+        }
+
+        public void EndGame()
+        {
+            Time.timeScale = 0;
+            BaseDestroyedEvent?.Invoke();
+        }
     }
 }
