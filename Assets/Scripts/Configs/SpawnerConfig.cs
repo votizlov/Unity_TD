@@ -28,16 +28,5 @@ namespace Configs
             Debug.LogError("i больше SpawnData.Length");
             return null;
         }
-
-        public void OnValidate()
-        {
-            foreach (var spawnElement in Waves)
-            {
-                if (spawnElement.enemies != null)
-                {
-                    // spawnElement.UnitName = spawnElement.SpawnedPrefab.name;
-                }
-            }
-        }
     }
 }

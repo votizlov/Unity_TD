@@ -96,6 +96,12 @@ namespace Editors
                 var array = Config.Waves;
                 array.Add(ScriptableObject.CreateInstance<Wave>());
             }
+            if (GUILayout.Button("Remove last wave"))
+            {
+                var array = Config.Waves;
+                if(array.Count>0)
+                    array.RemoveAt(array.Count-1);
+            }
 
             UpdateFields();
             serializedObject.ApplyModifiedProperties();

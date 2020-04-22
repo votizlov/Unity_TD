@@ -99,6 +99,13 @@ namespace Editors
                 var array = Config.enemies;
                 array.Add(null);
             }
+            
+            if (GUILayout.Button("Remove last enemy"))
+            {
+                var array = Config.enemies;
+                if(array.Count>0)
+                    array.RemoveAt(array.Count-1);
+            }
 
             UpdateFields();
             serializedObject.ApplyModifiedProperties();
