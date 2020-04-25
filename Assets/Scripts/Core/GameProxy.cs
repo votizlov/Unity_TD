@@ -9,10 +9,7 @@ namespace Core
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/GameProxy", order = 1)]
     public class GameProxy : ScriptableObject
     {
-        public event Action NewGameEvent;
-        public event Action EndGameEvent;
         public event Action<int> AddScoreEvent;
-        public event Action NewWaveEvent;
 
         public event Action BaseDestroyedEvent;
 
@@ -30,6 +27,8 @@ namespace Core
         public List<GameObject> enemies = new List<GameObject>();
         public List<GameObject> guards = new List<GameObject>();
         public GameObject baze;
+        public bool isLastWave = false;
+        
 
         public void ClearState()
         {
@@ -57,12 +56,6 @@ namespace Core
             }
 
             AddScoreEvent?.Invoke(value);
-        }
-
-        public void NewGame()
-        {
-            Scores = 0;
-            NewGameEvent?.Invoke();
         }
 
         public void OnWawesCleared()

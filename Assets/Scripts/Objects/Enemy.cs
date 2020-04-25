@@ -17,6 +17,8 @@ namespace Objects
         {
             gameProxy.AddScore(bounty);
             gameProxy.enemies.Remove(gameObject);
+            if(gameProxy.enemies.Count==0 && gameProxy.isLastWave)
+                gameProxy.OnWawesCleared();
         }
 
         // Update is called once per frame

@@ -60,7 +60,7 @@ namespace Objects
                     }
                 }
 
-                gameProxy.OnWawesCleared();
+                gameProxy.isLastWave = true;
             }
         }
     }
