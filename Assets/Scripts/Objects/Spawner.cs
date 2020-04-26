@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Configs;
 using Core;
+using Core.Pooling;
 using UnityEngine;
 
 namespace Objects
@@ -51,7 +52,7 @@ namespace Objects
                         yield return new WaitForSeconds(element.Delay);
                         foreach (var enemy in element.enemies)
                         {
-                            Instantiate(enemy, element.spawnPoint.position, transform.rotation);
+                            PoolManager.GetObject(enemy.name, element.spawnPoint.position, Quaternion.identity);
                         }
                     }
                     else

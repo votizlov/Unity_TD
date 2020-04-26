@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6807104792650995}
   - component: {fileID: 5424430722426449827}
   - component: {fileID: 5424430722426449831}
+  - component: {fileID: -6161088039472904811}
   m_Layer: 8
   m_Name: RangeEnemy
   m_TagString: Damagable
@@ -186,3 +187,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+--- !u!114 &-6161088039472904811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424430722426449850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5a46ea744aef7429c809ebca81252a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

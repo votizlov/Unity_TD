@@ -2167,6 +2167,20 @@ MonoBehaviour:
       type: 3}
     count: 10
     ferula: {fileID: 0}
+  - name: MeleeEnemy
+    prefab: {fileID: -7950879548732963274, guid: 755216a354cb45342b2ccf9ebec80b95,
+      type: 3}
+    count: 5
+    ferula: {fileID: 0}
+  - name: RangeEnemy
+    prefab: {fileID: -6161088039472904811, guid: 0d939f5231fde8441a31562b278067e4,
+      type: 3}
+    count: 5
+    ferula: {fileID: 0}
+  - name: SuicideEnemy
+    prefab: {fileID: 974131328611016436, guid: 7c512d59406c8cd478490d813d50061c, type: 3}
+    count: 5
+    ferula: {fileID: 0}
 --- !u!4 &978841192
 Transform:
   m_ObjectHideFlags: 0
