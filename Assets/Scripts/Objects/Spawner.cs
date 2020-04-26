@@ -16,15 +16,16 @@ namespace Objects
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.up * 5);
+            var pos = transform.position;
+            Gizmos.DrawLine(pos, pos + Vector3.up * 5);
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.left * 5);
+            Gizmos.DrawLine(pos, pos + Vector3.left * 5);
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.forward * 5);
+            Gizmos.DrawLine(pos, pos + Vector3.forward * 5);
             //Gizmos.DrawCube(transform.position, transform.localScale);
         }
 
-        private int _counter = 0;
+        private int counter = 0;
         private bool isWavesLeft = true;
 
         private void OnEnable()
@@ -45,7 +46,7 @@ namespace Objects
             {
                 while (isWavesLeft)
                 {
-                    var element = _spawnerConfig.GetElement(_counter++);
+                    var element = _spawnerConfig.GetElement(counter++);
 
                     if (element != null)
                     {

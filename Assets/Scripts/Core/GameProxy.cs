@@ -9,6 +9,10 @@ namespace Core
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/GameProxy", order = 1)]
     public class GameProxy : ScriptableObject
     {
+        public List<GameObject> enemies = new List<GameObject>();
+        public List<GameObject> guards = new List<GameObject>();
+        public GameObject baze;
+        public bool isLastWave = false;
         public event Action<int> AddScoreEvent;
 
         public event Action BaseDestroyedEvent;
@@ -20,10 +24,6 @@ namespace Core
         public UIController UI { get; set; }
         public Timer Timer { get; set; }
 
-        public List<GameObject> enemies = new List<GameObject>();
-        public List<GameObject> guards = new List<GameObject>();
-        public GameObject baze;
-        public bool isLastWave = false;
 
         public void AddScore(int value)
         {
