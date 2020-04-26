@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 998812138578408679}
   - component: {fileID: 8274998593980510512}
   - component: {fileID: 974131328611016436}
+  - component: {fileID: -1797382556028958979}
   m_Layer: 8
   m_Name: SuicideEnemy
   m_TagString: Damagable
@@ -167,3 +168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5a46ea744aef7429c809ebca81252a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1797382556028958979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238276264540534020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c79f0a4d7966744cb40d5b7b562bcbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1

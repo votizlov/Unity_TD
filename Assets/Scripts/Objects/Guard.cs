@@ -8,7 +8,6 @@ namespace Objects
         public BarracksTower tower;
         private bool isInCombat = false;
 
-        // Start is called before the first frame update
         void Start()
         {
             gameProxy.guards.Add(gameObject);
@@ -21,14 +20,13 @@ namespace Objects
             tower.onGuardKilled();
         }
 
-        // Update is called once per frame
         void Update()
         {
             float minDistance = aggroRange;
             GameObject closestObject = null;
             foreach (var enemy in gameProxy.enemies)
             {
-                if (minDistance == -1 || Vector3.Distance(enemy.transform.position, transform.position) <= minDistance)
+                if (Vector3.Distance(enemy.transform.position, transform.position) <= minDistance)
                 {
                     minDistance = Vector3.Distance(enemy.transform.position, transform.position);
                     closestObject = enemy;
@@ -46,7 +44,9 @@ namespace Objects
                 isInCombat = false;
                 target = tower.guardsGroupingPoint;
             }
-            SetDestination(target);
+
+            if (isInCombat)
+                SetDestination(target);
         }
     }
 }

@@ -7,6 +7,7 @@ namespace Objects
         public int bounty;
 
         private bool isInCombat = false;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -17,7 +18,7 @@ namespace Objects
         {
             gameProxy.AddScore(bounty);
             gameProxy.enemies.Remove(gameObject);
-            if(gameProxy.enemies.Count==0 && gameProxy.isLastWave)
+            if (gameProxy.enemies.Count == 0 && gameProxy.isLastWave)
                 gameProxy.OnWawesCleared();
         }
 
@@ -28,7 +29,7 @@ namespace Objects
             GameObject closestObject = null;
             foreach (var guard in gameProxy.guards)
             {
-                if (minDistance < 0 || Vector3.Distance(guard.transform.position, transform.position) <= minDistance)
+                if (Vector3.Distance(guard.transform.position, transform.position) <= minDistance)
                 {
                     minDistance = Vector3.Distance(guard.transform.position, transform.position);
                     closestObject = guard;
@@ -47,6 +48,7 @@ namespace Objects
                 target = gameProxy.baze.transform;
                 attackingObject.AttackTarget(gameProxy.baze);
             }
+
             SetDestination(target);
         }
     }
