@@ -1,4 +1,5 @@
-﻿using Objects;
+﻿using System;
+using Objects;
 using Objects.Attacks;
 using UnityEngine;
 
@@ -15,6 +16,17 @@ namespace Core
             gameProxy.attackController = new AttackController();
             gameProxy.UI = ui;
             gameProxy.Timer = timer;
+            gameProxy.BaseDestroyedEvent += Pause;
+        }
+
+        private void OnDisable()
+        {
+            gameProxy.BaseDestroyedEvent -= Pause;
+        }
+
+        private void Pause()
+        {
+            Time.timeScale = 0;
         }
     }
 }
