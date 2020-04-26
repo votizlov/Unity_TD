@@ -107,8 +107,7 @@ namespace Editors
                 if(array.Count>0)
                     array.RemoveAt(array.Count-1);
             }
-
-            UpdateFields();
+            
             serializedObject.ApplyModifiedProperties();
         }
     }
