@@ -18,8 +18,7 @@ namespace Configs
             {
                 return Waves[i];
             }
-
-            Debug.LogError("i больше SpawnData.Length");
+            
             return null;
         }
     }
