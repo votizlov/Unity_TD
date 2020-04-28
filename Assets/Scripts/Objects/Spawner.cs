@@ -25,7 +25,8 @@ namespace Objects
             //Gizmos.DrawCube(transform.position, transform.localScale);
         }
 
-        private int counter = 0;
+        private int counter;
+        private int waveCounter;
         private bool isWavesLeft = true;
 
         private void OnEnable()
@@ -44,12 +45,13 @@ namespace Objects
         {
             get
             {
+                counter = _spawnerConfig.Waves.Count;
                 while (isWavesLeft)
                 {
-                    var element = _spawnerConfig.GetElement(counter++);
 
-                    if (element != null)
+                    if (counter-->0)
                     {
+                        var element = _spawnerConfig.GetElement(waveCounter++);
                         yield return new WaitForSeconds(element.Delay);
                         foreach (var enemy in element.enemies)
                         {
